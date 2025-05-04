@@ -3,7 +3,7 @@ import {HAMBURGER_ICON, USER_ICON, YOUTUBE_ICON} from "../utils/constants.jsx";
 
 const Header = () => {
     return (
-        <div className="flex items-center justify-between p-2 m-2 -mt-5">
+        <div className="flex items-center justify-between shadow-md">
             <div className="flex items-center">
                 <img
                     className="h-10 mr-2"
