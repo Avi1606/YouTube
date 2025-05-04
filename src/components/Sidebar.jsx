@@ -1,9 +1,10 @@
 import React from 'react';
+import ButtonList from "./ButtonList.jsx";
 
 const Sidebar = () => {
     return (
         <div>
-            <p>Sidebar</p>
+            <ButtonList />
         </div>
     );
 };

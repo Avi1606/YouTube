@@ -18,12 +18,12 @@ const Header = () => {
             </div>
             <div className="flex items-center">
                 <input
-                    className="px-3 py-2 border border-gray-300 rounded-l-full"
+                    className="w-90 px-3 py-2 border border-gray-300 rounded-l-full"
                     type="text"
                     placeholder="Search"
                 />
                 <button className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-r-full">
-                    Search
+                    🔍
                 </button>
             </div>
             <div className="flex items-center">

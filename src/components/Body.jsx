@@ -1,9 +1,12 @@
 import React from 'react';
+import Sidebar from "./Sidebar.jsx";
+import MainContainer from "./MainContainer.jsx";
 
 const Body = () => {
     return (
         <div>
-            <p>Body</p>
+           <Sidebar />
+            <MainContainer />
         </div>
     );
 };
