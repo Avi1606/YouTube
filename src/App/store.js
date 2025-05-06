@@ -1,9 +1,10 @@
-import {configureStore, createStore} from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
+import appSlice from "./appSlice.js";
 
 const store = configureStore({
-    name: "youtube",
     reducer: {
+        app: appSlice,
+    }
+});
 
-    }
-    }
-)
+export default store;
