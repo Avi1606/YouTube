@@ -6,8 +6,10 @@ import Sidebar from "./Sidebar.jsx";
 const MainContainer = () => {
     return (
         <div>
-            <VideoContainer />
             <Sidebar />
+            <VideoContainer />
+
+
         </div>
     );
 };
