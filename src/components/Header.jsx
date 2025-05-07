@@ -1,12 +1,21 @@
 import React from 'react';
 import {HAMBURGER_ICON, USER_ICON, YOUTUBE_ICON} from "../utils/constants.jsx";
+import {useDispatch} from "react-redux";
+import {toggleMenu} from "../App/appSlice.js";
 
 const Header = () => {
+    const dispatch = useDispatch();
+
+    const handleToggleMenu = () =>{
+        dispatch(toggleMenu());
+    }
+
     return (
         <div className="flex items-center justify-between shadow-md">
             <div className="flex items-center">
                 <img
-                    className="h-10 mr-2"
+                    onClick={() => handleToggleMenu()}
+                    className="h-10 mr-2 cursor-pointer"
                     src={HAMBURGER_ICON}
                     alt="hamburger menu"/>
 

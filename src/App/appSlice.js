@@ -6,9 +6,9 @@ const appSlice = createSlice({
         showMenu: false
     },
     reducers: {
-        toggleMenu: (state) => (
+        toggleMenu: (state) => {(
             state.showMenu = !state.showMenu
-        ),
+        )},
     },
 
 });
