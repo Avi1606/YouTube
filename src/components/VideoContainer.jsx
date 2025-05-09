@@ -3,7 +3,7 @@ import React from 'react';
 const VideoContainer = () => {
     return (
         <div>
-            <p></p>
+            <p>video</p>
         </div>
     );
 };

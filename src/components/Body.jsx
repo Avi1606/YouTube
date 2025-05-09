@@ -5,8 +5,8 @@ import MainContainer from "./MainContainer.jsx";
 const Body = () => {
     return (
         <div>
-            <MainContainer />
             <Sidebar />
+            <MainContainer />
         </div>
     );
 };
