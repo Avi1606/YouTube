@@ -15,7 +15,7 @@ const Header = () => {
             <div className="flex items-center">
                 <img
                     onClick={() => handleToggleMenu()}
-                    className="h-10 mr-2 cursor-pointer"
+                    className="h-10 mr-2 ml-4 cursor-pointer hover:opacity-75"
                     src={HAMBURGER_ICON}
                     alt="hamburger menu"/>
 
@@ -37,7 +37,7 @@ const Header = () => {
             </div>
             <div className="flex items-center">
                 <img
-                    className="h-8 w-8"
+                    className="h-8 w-8 mr-24 rounded-full"
                     src={USER_ICON}
                     alt="user icon"
                 />

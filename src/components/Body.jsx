@@ -6,6 +6,7 @@ const Body = () => {
     return (
         <div>
             <MainContainer />
+            <Sidebar />
         </div>
     );
 };
