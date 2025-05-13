@@ -2,6 +2,8 @@ import React from 'react';
 import {HAMBURGER_ICON, USER_ICON, YOUTUBE_ICON} from "../utils/constants.jsx";
 import {useDispatch} from "react-redux";
 import {toggleMenu} from "../App/appSlice.js";
+import Body from "./Body.jsx";
+import {Link} from "react-router-dom";
 
 const Header = () => {
     const dispatch = useDispatch();
