@@ -5,7 +5,7 @@ const VideoCard = ({info}) => {
     const { snippet, statistics } = info;
 
     return (
-        <div className="p-2 m-2 w-72 shadow-sm">
+        <div className="p-2 m-2 w-72 shadow-sm cursor-pointer">
             <img
                 className="rounded-lg w-full"
                 src={snippet.thumbnails.medium.url}

@@ -6,7 +6,7 @@ export const USER_ICON = "https://cdn-icons-png.flaticon.com/512/666/666201.png"
 
 const YOUTUBE_API_KEY = "AIzaSyChrXYlprRt5GcK02mjuGYrbm6icywaJr8";
 
-export const YOUTUBE_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key="
+export const YOUTUBE_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key="
     + YOUTUBE_API_KEY;
 
 
