@@ -3,10 +3,11 @@ import {HAMBURGER_ICON, USER_ICON, YOUTUBE_ICON} from "../utils/constants.jsx";
 import {useDispatch} from "react-redux";
 import {toggleMenu} from "../App/appSlice.js";
 import Body from "./Body.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Header = () => {
     const dispatch = useDispatch();
+
 
     const handleToggleMenu = () =>{
         dispatch(toggleMenu());
@@ -21,11 +22,14 @@ const Header = () => {
                     src={HAMBURGER_ICON}
                     alt="hamburger menu"/>
 
+            
                 <img
-                    className="h-25"
+                    className="h-25 cursor-pointer"
                     src={YOUTUBE_ICON}
                     alt="yt logo"
                 />
+          
+
             </div>
             <div className="flex items-center">
                 <input

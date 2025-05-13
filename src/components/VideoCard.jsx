@@ -1,6 +1,9 @@
-import React from 'react';
+import React from "react";
+import ShimmerUI from "./SimmerUI.jsx";
+
 const VideoCard = ({info}) => {
-    if (!info) return null;
+
+    if (!info) return <ShimmerUI/>;
 
     const { snippet, statistics } = info;
 
