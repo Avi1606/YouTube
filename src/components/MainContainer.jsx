@@ -6,7 +6,7 @@ import {Outlet} from "react-router-dom";
 
 const MainContainer = () => {
     return (
-        <div>
+        <div className="py-15">
             <ButtonList />
             <VideoContainer />
         </div>

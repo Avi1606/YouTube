@@ -35,7 +35,7 @@ const Header = () => {
     }
 
     return (
-        <div className="flex items-center justify-between shadow-md">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white flex items-center justify-between shadow-md">
             <div className="flex items-center">
                 <img
                     onClick={() => handleToggleMenu()}

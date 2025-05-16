@@ -24,13 +24,13 @@ const appRouter = createBrowserRouter([{
 function App() {
     return (
         <Provider store={store}>
-        <div className="text-black">
-            <Header/>
-            <RouterProvider router={appRouter} />
-        </div>
+            <div className="text-black">
+                <Header/>
+                <div className="pt-16">
+                    <RouterProvider router={appRouter} />
+                </div>
+            </div>
         </Provider>
-
     );
 }
-
 export default App

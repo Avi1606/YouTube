@@ -5,7 +5,7 @@ const Sidebar = () => {
     const showSidebar = useSelector(store => store.app.showMenu);
 
     return (
-        <div className="">
+        <div className="py-8">
             {showSidebar &&
                 <div className="shadow-lg w-48 p-3 ">
                     <ul className="p-3">

@@ -30,7 +30,7 @@ import React, {useEffect, useState} from 'react';
         if (!videoInfo) return <div className="flex justify-center p-4">Loading...</div>;
 
         return (
-            <div className="flex flex-col lg:flex-row gap-4 p-4">
+            <div className="flex flex-col lg:flex-row gap-4 p-12">
                 {/* Main video section */}
                 <div className="lg:w-8/12">
                     <div className="sticky top-20">
