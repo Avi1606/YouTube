@@ -10,6 +10,7 @@ const Header = () => {
 
     const [searchQuery ,setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const [showSuggestion, setShowSuggestion] = useState(false);
 
     const handleToggleMenu = () =>{
         dispatch(toggleMenu());
@@ -56,12 +57,14 @@ const Header = () => {
                         placeholder="Search"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        onFocus={() => setShowSuggestion(true)}
+                        onBlur={() => setShowSuggestion(false)}
                     />
                     <button className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-r-full hover:bg-gray-200">
                         🔍
                     </button>
                 </div>
-                {suggestions.length > 0 && (
+                {suggestions.length > 0 && showSuggestion && (
                     <div className="absolute top-10 bg-white w-[550px] shadow-lg rounded-2xl z-7 mt-1 ">
                         <ul className="py-2">
                             {suggestions.map((suggestion) => (
