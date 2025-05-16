@@ -9,6 +9,7 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const [searchQuery ,setSearchQuery] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
 
     const handleToggleMenu = () =>{
         dispatch(toggleMenu());
@@ -29,7 +30,7 @@ const Header = () => {
         const data = await fetch(YOUTUBE_SERACH_API + searchQuery);
 
         const json = await data.json();
-        console.log(json);
+        setSuggestions(json[1]);
     }
 
     return (
@@ -47,17 +48,29 @@ const Header = () => {
                     alt="yt logo"
                 />
             </div>
-            <div className="flex items-center">
-                <input
-                    className="w-150 px-3 py-2 border border-gray-300 rounded-l-full"
-                    type="text"
-                    placeholder="Search"
-                    value={searchQuery}
-                    onChange={(e)=>setSearchQuery(e.target.value)}
-                />
-                <button className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-r-full">
-                    🔍
-                </button>
+            <div className="flex flex-col items-center relative">
+                <div className="flex">
+                    <input
+                        className="w-[500px] px-3 py-2 border border-gray-300 rounded-l-full focus:outline-none"
+                        type="text"
+                        placeholder="Search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <button className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-r-full hover:bg-gray-200">
+                        🔍
+                    </button>
+                </div>
+                {suggestions.length > 0 && (
+                    <div className="absolute top-10 bg-white w-[550px] shadow-lg rounded-2xl z-7 mt-1 ">
+                        <ul className="py-2">
+                            {suggestions.map((suggestion) => (
+                                <li className="px-2 py-2 hover:bg-gray-100 flex items-center cursor-pointer">
+                                    <span className="mr-3">🔍</span> {suggestion}
+                                </li>))}
+                        </ul>
+                    </div>
+                )}
             </div>
             <div className="flex items-center">
                 <img
