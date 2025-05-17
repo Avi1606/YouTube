@@ -4,10 +4,8 @@ export const YOUTUBE_ICON = "https://www.logo.wine/a/logo/YouTube/YouTube-Logo.w
 
 export const USER_ICON = "https://cdn-icons-png.flaticon.com/512/666/666201.png";
 
-// Get API Key from environment variable
-const VITE_YOUTUBE_API_KEY = import.meta.env.API_KEY;
+const YOUTUBE_API_KEY = import.meta.env.VITE_API_KEY;
 
-// Use it in the YouTube API URL
-export const YOUTUBE_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=${VITE_YOUTUBE_API_KEY}`;
+export const YOUTUBE_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=${YOUTUBE_API_KEY}`;
 
 export const YOUTUBE_SERACH_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
