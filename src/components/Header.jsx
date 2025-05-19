@@ -53,11 +53,14 @@ const Header = () => {
     }, [searchQuery]);
 
     const searchAPI = async () => {
-
-        const data = await fetch(YOUTUBE_SERACH_API + searchQuery);
-
-        const json = await data.json();
-        setSuggestions(json[1]);
+        try {
+            const data = await fetch(YOUTUBE_SERACH_API + searchQuery);
+            const json = await data.json();
+            setSuggestions(json[1] || []);
+        } catch (error) {
+            console.error("Error fetching search suggestions:", error);
+            setSuggestions([]);
+        }
     }
 
     return (
