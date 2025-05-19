@@ -9,3 +9,5 @@ const YOUTUBE_API_KEY = import.meta.env.VITE_API_KEY;
 export const YOUTUBE_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=${YOUTUBE_API_KEY}`;
 
 export const YOUTUBE_SERACH_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const YOUTUBE_SEARCH_RESULTS_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=${YOUTUBE_API_KEY}&q=`;
