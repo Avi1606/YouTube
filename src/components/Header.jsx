@@ -30,13 +30,13 @@ const Header = () => {
     }
     useEffect(() => {
         //APICALL
-        const timer = setTimeout(() => searchAPI(), 200);
+        if (searchQuery.trim()) {
+            const timer = setTimeout(() => searchAPI(), 200);
 
-        return ()=> {
-            clearTimeout(timer);
+            return () => {
+                clearTimeout(timer);
+            }
         }
-      searchAPI()
-
     }, [searchQuery]);
 
     const searchAPI = async () => {
@@ -74,6 +74,25 @@ const Header = () => {
                         onFocus={() => setShowSuggestion(true)}
                         onBlur={() => setShowSuggestion(false)}
                         onKeyPress={handleKeyPress}
+                        onPaste={(e) => {
+                            // Get pasted text and update search query
+                            const pastedText = e.clipboardData.getData('text');
+
+                            // If text is selected, replace only the selected portion
+                            const start = e.target.selectionStart;
+                            const end = e.target.selectionEnd;
+
+                            if (start !== end) {
+                                // Text is selected, replace only that portion
+                                const newValue = searchQuery.substring(0, start) + pastedText + searchQuery.substring(end);
+                                setSearchQuery(newValue);
+                            } else {
+                                // No text selected, insert at cursor position
+                                const newValue = searchQuery.substring(0, start) + pastedText + searchQuery.substring(start);
+                                setSearchQuery(newValue);
+                            }
+                            e.preventDefault();
+                        }}
                     />
                     <button 
                         className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-r-full hover:bg-gray-200"

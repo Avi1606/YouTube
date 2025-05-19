@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
     import {useDispatch} from "react-redux";
     import {closeMenu} from "../App/appSlice.js";
-    import {useSearchParams} from "react-router-dom";
+    import {useNavigate, useSearchParams} from "react-router-dom";
     import VideoCard from "./VideoCard.jsx";
     import {YOUTUBE_API} from "../utils/constants.jsx";
 
     const WatchPage = () => {
         const dispatch = useDispatch();
+        const navigate = useNavigate();
         const [params] = useSearchParams();
         const [relatedVideos, setRelatedVideos] = useState([]);
         const [videoInfo, setVideoInfo] = useState(null);
