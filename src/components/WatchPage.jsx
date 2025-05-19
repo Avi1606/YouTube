@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
     import {useDispatch} from "react-redux";
     import {closeMenu} from "../App/appSlice.js";
-    import {useSearchParams} from "react-router-dom";
+    import {useNavigate, useSearchParams} from "react-router-dom";
     import VideoCard from "./VideoCard.jsx";
     import {YOUTUBE_API} from "../utils/constants.jsx";
 
     const WatchPage = () => {
         const dispatch = useDispatch();
+        const navigate = useNavigate();
         const [params] = useSearchParams();
         const [relatedVideos, setRelatedVideos] = useState([]);
         const [videoInfo, setVideoInfo] = useState(null);
@@ -18,13 +19,32 @@ import React, {useEffect, useState} from 'react';
         }, [params]);
 
         const fetchRelatedVideos = async () => {
-            const data = await fetch(YOUTUBE_API);
-            const json = await data.json();
-            setRelatedVideos(json.items.slice(0, 15));
+            try {
+                const videoId = params.get("v");
+                if (!videoId) return;
 
-            // Set current video info (in a real app, this would be fetched specifically)
-            const currentVideo = json.items.find(video => video.id === params.get("v"));
-            setVideoInfo(currentVideo);
+                // Fetch popular videos for related content
+                const data = await fetch(YOUTUBE_API);
+                const json = await data.json();
+                setRelatedVideos(json.items.slice(0, 15));
+
+                // Try to find current video in the popular videos
+                let currentVideo = json.items.find(video => video.id === videoId);
+
+                // If video not found in popular videos, fetch it directly by ID
+                if (!currentVideo) {
+                    const videoData = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${YOUTUBE_API.split('key=')[1]}`);
+                    const videoJson = await videoData.json();
+
+                    if (videoJson.items && videoJson.items.length > 0) {
+                        currentVideo = videoJson.items[0];
+                    }
+                }
+
+                setVideoInfo(currentVideo);
+            } catch (error) {
+                console.error("Error fetching video data:", error);
+            }
         };
 
         if (!videoInfo) return <div className="flex justify-center p-4">Loading...</div>;
@@ -97,7 +117,7 @@ import React, {useEffect, useState} from 'react';
                     <h2 className="font-medium mb-3">Related Videos</h2>
                     <div className="flex flex-col gap-2">
                         {relatedVideos.map(video => (
-                            <div key={video.id} className="w-full" onClick={() => window.location = `/watch?v=${video.id}`}>
+                            <div key={video.id} className="w-full" onClick={() => navigate(`/watch?v=${video.id}`)}>
                                 <div className="flex p-1 cursor-pointer">
                                     <img
                                         src={video.snippet.thumbnails.medium.url}

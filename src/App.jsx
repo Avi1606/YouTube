@@ -12,7 +12,7 @@ const appRouter = createBrowserRouter([{
     element: (
         <div className="text-black">
             <Header/>
-            <div className="pt-16">
+            <div className="pt-20">
                 <Body/>
             </div>
         </div>
