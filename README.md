@@ -76,6 +76,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-
-
 Made with ❤️ by the YouTube Clone Team
