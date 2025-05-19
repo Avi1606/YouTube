@@ -38,7 +38,7 @@ const SearchResults = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="pt-8 pb-4">
             <h2 className="text-xl font-bold mb-4">Search results for: {query}</h2>
             <div className="flex flex-wrap">
                 {isLoading

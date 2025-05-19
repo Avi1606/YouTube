@@ -2,11 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {HAMBURGER_ICON, USER_ICON, YOUTUBE_ICON, YOUTUBE_SERACH_API} from "../utils/constants.jsx";
 import {useDispatch} from "react-redux";
 import {toggleMenu} from "../App/appSlice.js";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation, useSearchParams} from "react-router-dom";
 
 const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+    const [searchParams] = useSearchParams();
 
     const [searchQuery ,setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
@@ -28,6 +30,17 @@ const Header = () => {
             handleSearch();
         }
     }
+
+    // Sync search input with URL query parameter when location changes
+    useEffect(() => {
+        if (location.pathname === '/results') {
+            const queryParam = searchParams.get('q');
+            if (queryParam) {
+                setSearchQuery(queryParam);
+            }
+        }
+    }, [location.pathname, searchParams]);
+
     useEffect(() => {
         //APICALL
         if (searchQuery.trim()) {
@@ -108,7 +121,8 @@ const Header = () => {
                                 <li 
                                     key={index}
                                     className="px-2 py-2 hover:bg-gray-100 flex items-center cursor-pointer"
-                                    onClick={() => {
+                                    onMouseDown={(e) => {
+                                        e.preventDefault(); // Prevent default to avoid losing focus
                                         setSearchQuery(suggestion);
                                         navigate(`/results?q=${encodeURIComponent(suggestion)}`);
                                         setShowSuggestion(false);
