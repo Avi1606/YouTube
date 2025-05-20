@@ -8,4 +8,26 @@ export default defineConfig({
       react(),
       tailwindcss()
   ],
+  server: {
+    proxy: {
+      '/youtube-suggestions': {
+        target: 'https://suggestqueries.google.com/complete/search',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/youtube-suggestions/, ''),
+        configure: (proxy) => {
+          proxy.on('proxyReq', (proxyReq, req) => {
+            // Add client and ds parameters to the request
+            const url = new URL(proxyReq.path, 'https://suggestqueries.google.com');
+            if (!url.searchParams.has('client')) {
+              url.searchParams.append('client', 'firefox');
+            }
+            if (!url.searchParams.has('ds')) {
+              url.searchParams.append('ds', 'yt');
+            }
+            proxyReq.path = url.pathname + url.search;
+          });
+        }
+      }
+    }
+  }
 })
