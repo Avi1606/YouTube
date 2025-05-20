@@ -56,6 +56,7 @@ const Header = () => {
         try {
             const data = await fetch(YOUTUBE_SERACH_API + searchQuery);
             const json = await data.json();
+            // The API returns an array where the second element contains the suggestions
             setSuggestions(json[1] || []);
         } catch (error) {
             console.error("Error fetching search suggestions:", error);
@@ -64,25 +65,34 @@ const Header = () => {
     }
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white flex items-center justify-between shadow-md">
-            <div className="flex items-center">
-                <img
-                    onClick={() => handleToggleMenu()}
-                    className="h-10 mr-2 ml-4 cursor-pointer hover:opacity-75"
-                    src={HAMBURGER_ICON}
-                    alt="hamburger menu"
-                />
-                <img
-                    className="h-25 cursor-pointer"
-                    src={YOUTUBE_ICON}
-                    alt="yt logo"
-                    onClick={() => navigate('/')}
-                />
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white flex flex-col md:flex-row items-center justify-between shadow-md p-2">
+            <div className="flex items-center w-full md:w-auto justify-between md:justify-start">
+                <div className="flex items-center">
+                    <img
+                        onClick={() => handleToggleMenu()}
+                        className="h-8 md:h-10 mr-2 ml-2 md:ml-4 cursor-pointer hover:opacity-75"
+                        src={HAMBURGER_ICON}
+                        alt="hamburger menu"
+                    />
+                    <img
+                        className="h-16 md:h-25 cursor-pointer"
+                        src={YOUTUBE_ICON}
+                        alt="yt logo"
+                        onClick={() => navigate('/')}
+                    />
+                </div>
+                <div className="md:hidden">
+                    <img
+                        className="h-8 w-8 mx-2 rounded-full"
+                        src={USER_ICON}
+                        alt="user icon"
+                    />
+                </div>
             </div>
-            <div className="flex flex-col items-center relative">
-                <div className="flex">
+            <div className="flex flex-col items-center relative w-full md:w-auto my-2 md:my-0">
+                <div className="flex w-full max-w-[500px]">
                     <input
-                        className="w-[500px] px-3 py-2 border border-gray-300 rounded-l-full focus:outline-none"
+                        className="w-full md:w-[500px] px-3 py-2 border border-gray-300 rounded-l-full focus:outline-none"
                         type="text"
                         placeholder="Search"
                         value={searchQuery}
@@ -118,7 +128,7 @@ const Header = () => {
                     </button>
                 </div>
                 {suggestions.length > 0 && showSuggestion && (
-                    <div className="absolute top-10 bg-white w-[550px] shadow-lg rounded-2xl z-7 mt-1 ">
+                    <div className="absolute top-10 bg-white w-full max-w-[500px] md:w-[500px] shadow-lg rounded-2xl z-10 mt-1">
                         <ul className="py-2">
                             {suggestions.map((suggestion, index) => (
                                 <li 
@@ -137,9 +147,9 @@ const Header = () => {
                     </div>
                 )}
             </div>
-            <div className="flex items-center">
+            <div className="hidden md:flex items-center">
                 <img
-                    className="h-8 w-8 mr-24 rounded-full"
+                    className="h-8 w-8 mr-4 md:mr-24 rounded-full"
                     src={USER_ICON}
                     alt="user icon"
                 />
