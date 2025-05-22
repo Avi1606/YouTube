@@ -33,15 +33,17 @@ const VideoContainer = () => {
     };
 
     return (
-        <div className="flex flex-wrap">
-            {isLoading
-                ? renderShimmerCards()
-                : videos.map(video => (
-                    <Link key={video.id} to={"/watch?v=" + video.id}>
-                        <VideoCard info={video} />
-                    </Link>
-                ))
-            }
+        <div className="pt-8 pb-4">
+            <div className="flex flex-wrap">
+                {isLoading
+                    ? renderShimmerCards()
+                    : videos.map(video => (
+                        <Link key={video.id} to={"/watch?v=" + video.id}>
+                            <VideoCard info={video} />
+                        </Link>
+                    ))
+                }
+            </div>
         </div>
     );
 };

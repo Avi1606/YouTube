@@ -3,7 +3,7 @@ import Button from "./Button.jsx";
 
 const ButtonList = () => {
     return (
-        <div className="flex ">
+        <div className="flex overflow-x-auto pb-2 hide-scrollbar">
             <Button name={"All"}/>
             <Button name={"News"}/>
             <Button name={"Movies"}/>

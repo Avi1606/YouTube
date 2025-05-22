@@ -4,9 +4,11 @@ import {Outlet} from "react-router-dom";
 
 const Body = () => {
     return (
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
             <Sidebar />
-            <Outlet />
+            <div className="w-full overflow-x-hidden">
+                <Outlet />
+            </div>
         </div>
     );
 };
